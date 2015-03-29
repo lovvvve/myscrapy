@@ -6,6 +6,7 @@ __author__ = 'Lovvvve'
 __email__ = 'lovvvve+github@gmail.com'
 
 import scrapy
+import re
 from myscrapy.items import ProxyIpItem
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors import LinkExtractor
@@ -50,20 +51,3 @@ class Proxy_www_proxy_com_ru(scrapy.Spider):
             iterm['port'] = sel.xpath('td//text()').extract()[2]
             yield iterm
 
-
-
-
-class Baidutieba_wuliandianfeng(CrawlSpider):
-    name = 'Baidutieba_wldf'
-    allowed_domains = ['tieba.baidu.com']
-    start_urls = ['http://tieba.baidu.com/f/good?kw=武炼巅峰&ie=utf-8&cid=1']
-
-    rules = (
-        Rule(LinkExtractor(allow=('f/good\?kw=武炼巅峰&ie=utf-8&cid=1'))),
-        Rule(LinkExtractor(allow=('p/'))),
-    )
-
-
-
-
-response.xpath('//h1[@class="core_title_txt   member_thread_title_pb "]//text()').extract()[0]
