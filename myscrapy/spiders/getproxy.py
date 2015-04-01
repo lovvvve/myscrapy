@@ -8,8 +8,6 @@ __email__ = 'lovvvve+github@gmail.com'
 import scrapy
 import re
 from myscrapy.items import ProxyIpItem
-from scrapy.contrib.spiders import CrawlSpider, Rule
-from scrapy.contrib.linkextractors import LinkExtractor
 
 
 class Proxy_cn_proxy(scrapy.Spider):
@@ -40,12 +38,6 @@ class Proxy_www_proxy_com_ru(scrapy.Spider):
 
     def parse(self, response):
         for sel in response.xpath('//table[@width="100%"]')[3].xpath('tr')[1:]:
-            # ip = sel.xpath('td//text()').extract()[1]
-            # port = sel.xpath('td//text()').extract()[2]
-            # print ip+":"+port
-
-            # with open("test2.txt", 'aw') as f:
-            #     f.write(ip+':'+port+'\n')
             iterm = ProxyIpItem()
             iterm['ip'] = sel.xpath('td//text()').extract()[1]
             iterm['port'] = sel.xpath('td//text()').extract()[2]
